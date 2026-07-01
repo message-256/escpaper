@@ -33,7 +33,7 @@ func SubString(input string, delim rune) (string, error) {
 	var next, last int
 	var returned string
 	if len(input) <= 1 {
-		return "", errors.New("not formated string")
+		return "",nil
 	}
 	for {
 		next = strings.Index(input[last:], string(delim))
