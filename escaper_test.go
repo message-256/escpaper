@@ -44,6 +44,8 @@ func TestDelim(t *testing.T) {
 		`\\test",other stuff`:       {final: "\x1b\\test", err: nil},
 		"test\",others stuff":        {final: "test", err: nil},
 		`test`: {final:"",err:errors.New("string with no end")},
+		"":{final:"",err:nil},
+		"\"":{final:"",err:nil},
 	}
 	for input := range outputs {
 		fmt.Println("input = ", input)

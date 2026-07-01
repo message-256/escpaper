@@ -34,9 +34,6 @@ func SubString(input string, delim rune) (string, error) {
 	var returned string
 	if len(input) <= 1 {
 		return "", errors.New("not formated string")
-		//this might go away
-	} else if input[0] == byte(delim) && input[1] == byte(delim) {
-		return string(delim) + string(delim), nil
 	}
 	for {
 		next = strings.Index(input[last:], string(delim))
