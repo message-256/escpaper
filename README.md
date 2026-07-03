@@ -10,7 +10,7 @@ usage:
 package main;
 import "fmt"
 func main () {
-  // returns \x1b"hello\x1b"
+  // returns (theoretically) \x1b"hello\x1b"
   escapedstring ,err := escpaper.Escape(`\"hello\"`)
   //returns (theoretically) i said \x1b"hello there\x1b"
   substring,err  := escpaper.Delim(`i said \"hello there\"",other_stuff`,'"')
