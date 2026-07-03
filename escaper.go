@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 )
-
+// escape a string
 func Escape(input string) (string, error) {
 	var escaped string
 	if strings.Contains(input, "\x1b") {
@@ -29,6 +29,7 @@ func Escape(input string) (string, error) {
 	}
 	return escaped, nil
 }
+//escape a not previously escaped string until it reaches delim
 func SubString(input string, delim rune) (string, error) {
 	var next, last int
 	var returned string
