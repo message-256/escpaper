@@ -1,7 +1,6 @@
 package escpaper_test
 
 import (
-	"errors"
 	"fmt"
 	"github.com/message-256/escpaper"
 	"testing"
@@ -43,7 +42,7 @@ func TestDelim(t *testing.T) {
 		`test\\",other stuff`:       {final: "test\x1b\\", err: nil},
 		`\\test",other stuff`:       {final: "\x1b\\test", err: nil},
 		"test\",others stuff":       {final: "test", err: nil},
-		`test`:                      {final: "", err: errors.New("string with no end")},
+		`test`:                      {final: "", err: escpaper.ErrNoEnd},
 		"":                          {final: "", err: nil},
 		"\"":                        {final: "", err: nil},
 	}
