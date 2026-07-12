@@ -20,6 +20,7 @@ func TestEscaper(t *testing.T) {
 		`test\\`:       {final: "test\x1b\\", err: nil},
 		`\\test`:       {final: "\x1b\\test", err: nil},
 		"test":         {final: "test", err: nil},
+		"\x1babc": {final:"",err:escpaper.ErrStringAlreadyEscaped},
 	}
 	for input := range outputs {
 		fmt.Println("input = ", input)
