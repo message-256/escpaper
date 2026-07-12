@@ -4,11 +4,12 @@ import (
 	"errors"
 	"strings"
 )
-// escape a string
+var ErrNoEnd error = errors.New("string with no end")
+var ErrStringAlreadyEscaped error = errors.New("i think the strings already escaped")
 func Escape(input string) (string, error) {
 	var escaped string
 	if strings.Contains(input, "\x1b") {
-		return "", errors.New("i think the strings already escaped")
+		return "", ErrStringAlreadyEscaped
 	}
 	if len(input) <= 1 {
 		return "", nil
@@ -29,7 +30,6 @@ func Escape(input string) (string, error) {
 	}
 	return escaped, nil
 }
-//escape a not previously escaped string until it reaches delim
 func SubString(input string, delim rune) (string, error) {
 	var next, last int
 	var returned string
@@ -39,7 +39,7 @@ func SubString(input string, delim rune) (string, error) {
 	for {
 		next = strings.Index(input[last:], string(delim))
 		if next == -1 {
-			return "", errors.New("string with no end")
+			return "", ErrNoEnd
 		}
 		escapedsection, err := Escape(string(input[last : last+next]))
 		if err != nil {
