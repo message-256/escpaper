@@ -33,8 +33,14 @@ func Escape(input string) (string, error) {
 func SubString(input string, delim rune) (string, error) {
 	var next, last int
 	var returned string
-	if len(input) <= 1 {
+	if len(input) < 1 {
 		return "", nil
+	}
+	if rune(input[0]) == delim {
+			return string(delim),nil
+	}
+	if len(input) == 1 {
+			return input,nil
 	}
 	for {
 		next = strings.Index(input[last:], string(delim))
